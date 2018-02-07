@@ -449,7 +449,7 @@ class SlackBackend(IOBackend, SleepMixin, StorageMixin):
                     events = self.client.rtm_read()
                     if len(events) > 0:
                         # TODO: only handle events that are new.
-                        print(len(events))
+                        # print(len(events))
                         for e in events:
                             self.handle_incoming_event(e)
 

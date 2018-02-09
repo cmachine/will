@@ -6,7 +6,6 @@ import requests
 import sys
 import time
 import traceback
-import socket
 
 from markdownify import MarkdownConverter
 
@@ -455,7 +454,6 @@ class SlackBackend(IOBackend, SleepMixin, StorageMixin):
 
                     # Update channels/people/me/etc every 10s or so.
                     current_poll_count += 1
-
                     if current_poll_count > num_polls_between_updates:
                         self._update_backend_metadata()
                         current_poll_count = 0

@@ -462,7 +462,7 @@ class SlackBackend(IOBackend, SleepMixin, StorageMixin):
                     reconnect_attempt = 0
         except (KeyboardInterrupt, SystemExit):
             pass
-        except Exception, exc:
+        except:
             if reconnect_attempt <= 3:
                 reconnect_attempt += 1
                 delay = reconnect_attempt * 0.5
@@ -472,8 +472,6 @@ class SlackBackend(IOBackend, SleepMixin, StorageMixin):
                 self._watch_slack_rtm(reconnect_attempt)
             else:
                 logging.critical("Error watching slack RTM. Retries exceeded: \n%s" % traceback.format_exc())
-        except:
-            logging.critical("Error in watching slack RTM: \n%s" % traceback.format_exc())
 
     def bootstrap(self):
         # Bootstrap must provide a way to to have:
